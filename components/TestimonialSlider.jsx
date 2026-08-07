@@ -1,11 +1,27 @@
+
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
 import { FaQuoteLeft } from "react-icons/fa";
-import { Navigation, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
+const Swiper = dynamic(
+  () => import("swiper/react").then((mod) => mod.Swiper),
+  {
+    ssr: false,
+  }
+);
+
+const SwiperSlide = dynamic(
+  () => import("swiper/react").then((mod) => mod.SwiperSlide),
+  {
+    ssr: false,
+  }
+);
 
 const testimonialData = [
   {
@@ -43,43 +59,41 @@ const TestimonialSlider = () => {
     >
       {testimonialData.map((person, i) => (
         <SwiperSlide key={i}>
-          <div className="flex flex-col items-center gap-y-8 xl:flex-row xl:items-start xl:gap-x-12">
+          <div className="flex flex-col items-center gap-8 xl:flex-row xl:gap-16">
 
             {/* avatar, name, position */}
             <div className="flex flex-col items-center text-center xl:w-[250px]">
-              <div className="relative w-[100px] h-[100px] mb-4">
+              <div className="relative mb-4 h-[100px] w-[100px]">
                 <Image
                   src={person.image}
                   fill
-                  className="object-cover rounded-full"
+                  className="rounded-full object-cover"
                   alt={person.name}
                 />
               </div>
 
-              {/* name */}
               <div className="text-lg">
                 {person.name}
               </div>
 
-              {/* position */}
               <div className="text-[12px] uppercase font-extralight tracking-widest text-white/60">
                 {person.position}
               </div>
             </div>
 
-            {/* quote & message */}
-            <div className="flex-1 flex flex-col justify-center before:w-[1px] xl:before:bg-white/20 xl:before:absolute xl:before:left-0 xl:before:h-[200px] relative xl:pl-20">
+            {/* quote and message */}
+            <div className="relative flex flex-1 flex-col justify-center xl:border-l xl:border-white/20 xl:pl-20">
 
               {/* quote icon */}
               <div className="mb-4">
                 <FaQuoteLeft
-                  className="text-4xl xl:text-6xl text-white/20 mx-auto md:mx-0"
+                  className="mx-auto text-4xl text-white/20 md:mx-0 xl:text-6xl"
                   aria-hidden
                 />
               </div>
 
               {/* message */}
-              <div className="xl:text-lg text-center md:text-left text-white/80">
+              <div className="text-center text-white/80 md:text-left xl:text-lg">
                 {person.message}
               </div>
 
@@ -93,3 +107,4 @@ const TestimonialSlider = () => {
 };
 
 export default TestimonialSlider;
+

@@ -1,3 +1,6 @@
+
+import dynamic from "next/dynamic";
+
 import {
   RxCrop,
   RxPencil2,
@@ -7,12 +10,25 @@ import {
   RxArrowTopRight,
 } from "react-icons/rx";
 
-import { FreeMode, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+
+const Swiper = dynamic(
+  () => import("swiper/react").then((mod) => mod.Swiper),
+  {
+    ssr: false,
+  }
+);
+
+const SwiperSlide = dynamic(
+  () => import("swiper/react").then((mod) => mod.SwiperSlide),
+  {
+    ssr: false,
+  }
+);
 
 const serviceData = [
   {
@@ -64,15 +80,15 @@ const ServiceSlider = () => {
         clickable: true,
       }}
       modules={[FreeMode, Pagination]}
-      freeMode
+      freeMode={true}
       className="h-[240px] sm:h-[340px]"
     >
       {serviceData.map((item, i) => (
         <SwiperSlide key={i}>
-          <div className="bg-tertiary h-max rounded-lg py-8 px-6 flex flex-col justify-between group cursor-pointer hover:bg-white/10 transition-all duration-300">
+          <div className="group cursor-pointer rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10 h-full">
             
             {/* icon */}
-            <div className="text-4xl text-accent mb-6">
+            <div className="mb-6 text-4xl text-accent">
               <item.Icon aria-hidden />
             </div>
 
@@ -90,10 +106,11 @@ const ServiceSlider = () => {
             {/* arrow */}
             <div className="text-3xl">
               <RxArrowTopRight
-                className="group-hover:rotate-45 group-hover:text-accent transition-all duration-300"
+                className="transition-all duration-300 group-hover:rotate-45 group-hover:text-accent"
                 aria-hidden
               />
             </div>
+
           </div>
         </SwiperSlide>
       ))}
@@ -102,3 +119,4 @@ const ServiceSlider = () => {
 };
 
 export default ServiceSlider;
+

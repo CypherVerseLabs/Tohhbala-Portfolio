@@ -1,5 +1,6 @@
+
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 
 // icons
 import {
@@ -30,41 +31,35 @@ export const navData = [
 ];
 
 const Nav = () => {
-  const pathname = usePathname();
+  const router = useRouter();
+  const pathname = router.pathname;
 
   return (
-    <nav className="flex flex-col items-center xl:justify-center gap-y-4 fixed h-max bottom-0 mt-auto xl:right-[2%] z-50 top-0 w-full xl:w-16 xl:max-w-md xl:h-screen">
-      <div className="flex w-full xl:flex-col items-center justify-between xl:justify-center gap-y-10 px-4 md:px-40 xl:px-0 h-[80px] xl:h-max py-8 bg-white/10 backdrop-blur-sm text-3xl xl:text-xl xl:rounded-full">
+    <nav>
+      <div className="flex items-center gap-x-6">
         {navData.map((link, i) => (
           <Link
-            className={`${
-              link.path === pathname && "text-accent"
-            } relative flex items-center group hover:text-accent transition-all duration-300`}
             href={link.path}
             key={i}
+            className={`${
+              link.path === pathname ? "text-accent" : ""
+            } relative flex items-center group hover:text-accent transition-all duration-300`}
           >
-            {/* tolltip */}
-            <div
-              role="tooltip"
-              className="absolute pr-14 right-0 hidden xl:group-hover:flex"
-            >
-              <div className="bg-white relative flex text-primary items-center p-[6px] rounded-[3px]">
-                <div className="text-[12px] leading-none font-semibold capitalize">
-                  {link.name}
-                </div>
+            {/* tooltip */}
+            <div className="absolute bottom-full mb-2 hidden group-hover:flex left-1/2 -translate-x-1/2">
+              <div className="relative flex items-center rounded-md bg-white px-3 py-1 text-sm text-primary capitalize">
+                {link.name}
 
                 {/* triangle */}
                 <div
-                  className="border-solid border-l-white border-l-8 border-y-transparent border-y-[6px] border-r-0 absolute -right-2"
+                  className="absolute -bottom-2 left-1/2 -translate-x-1/2 border-solid border-l-transparent border-r-transparent border-t-white border-l-[6px] border-r-[6px] border-t-[8px]"
                   aria-hidden
                 />
               </div>
             </div>
 
             {/* icon */}
-            <div>
-              <link.Icon aria-hidden />
-            </div>
+            <link.Icon aria-hidden />
           </Link>
         ))}
       </div>
@@ -73,3 +68,5 @@ const Nav = () => {
 };
 
 export default Nav;
+
+

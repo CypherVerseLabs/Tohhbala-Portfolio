@@ -1,12 +1,27 @@
+
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
 import { BsArrowRight } from "react-icons/bs";
-import { Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
 import "swiper/css";
-import "swiper/css/free-mode";
 import "swiper/css/pagination";
+
+const Swiper = dynamic(
+  () => import("swiper/react").then((mod) => mod.Swiper),
+  {
+    ssr: false,
+  }
+);
+
+const SwiperSlide = dynamic(
+  () => import("swiper/react").then((mod) => mod.SwiperSlide),
+  {
+    ssr: false,
+  }
+);
 
 const workSlides = {
   slides: [
@@ -73,39 +88,40 @@ const WorkSlider = () => {
     >
       {workSlides.slides.map((slide, i) => (
         <SwiperSlide key={i}>
-          <div className="grid grid-cols-2 grid-rows-2 gap-4 h-full">
+          <div className="grid grid-cols-2 gap-4">
             {slide.images.map((image, imageI) => (
               <div
-                className="relative rounded-lg overflow-hidden flex items-center justify-center group"
                 key={imageI}
+                className="group relative flex items-center justify-center overflow-hidden rounded-xl"
               >
                 {/* image */}
                 <Image
                   src={image.path}
+                  width={500}
+                  height={300}
                   alt={image.title}
-                  fill
-                  className="object-cover"
+                  className="object-cover transition-all duration-500"
                 />
 
                 {/* overlay gradient */}
                 <div
-                  className="absolute inset-0 bg-gradient-to-l from-transparent via-[#e838cc] to-[#4a22bd] opacity-0 group-hover:opacity-80 transition-all duration-700"
+                  className="absolute inset-0 bg-gradient-to-l from-transparent via-[#e838cc] to-[#4a22bd] opacity-0 transition-all duration-700 group-hover:opacity-80"
                   aria-hidden
                 />
 
                 {/* title */}
-                <div className="absolute bottom-0 translate-y-full group-hover:-translate-y-10 group-hover:xl:-translate-y-20 transition-all duration-300">
+                <div className="absolute bottom-0 translate-y-full transition-all duration-300 group-hover:-translate-y-10 xl:group-hover:-translate-y-20">
                   <Link
                     href={image.link}
                     className="flex items-center gap-x-2 text-[13px] tracking-[0.2em]"
                   >
-                    <div className="delay-100">
+                    <span>
                       {image.title}
-                    </div>
+                    </span>
 
-                    <div className="text-xl translate-y-[500%] group-hover:translate-y-0 transition-all duration-300 delay-150">
+                    <span className="translate-y-[500%] text-xl transition-all duration-300 delay-150 group-hover:translate-y-0">
                       <BsArrowRight aria-hidden />
-                    </div>
+                    </span>
                   </Link>
                 </div>
               </div>
