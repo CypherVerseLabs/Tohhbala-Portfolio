@@ -1,39 +1,34 @@
 {
-  "name": "tohbala-portfolio",
-  "version": "1.0.1",
+  "name": "tohbala-llc-website",
+  "version": "1.0.0",
   "private": true,
   "author": {
     "name": "Mac Tohbala",
-    "email": "mactohbala@gmail.com",
-    "url": "https://github.com/CypherVerseLabs/Tohhbala-Portfolio"
+    "url": "https://github.com/CypherVerseLabs"
   },
-  "description": "Mac Tohbala is a Full-stack web developer with 10+ years of experience.",
+  "description": "Tohbala LLC builds custom software solutions, SaaS platforms, CRM systems, business automation tools, and technology strategies for growing organizations.",
   "keywords": [
-    "react",
-    "next",
-    "nextjs",
-    "html",
-    "css",
-    "javascript",
-    "js",
-    "modern-ui",
-    "modern-ux",
-    "portfolio",
-    "framer-motion",
-    "3d-website",
-    "particle-effect"
+    "Tohbala LLC",
+    "CypherVerse Labs",
+    "custom software development",
+    "software consulting",
+    "SaaS development",
+    "CRM systems",
+    "business automation",
+    "technology consulting",
+    "React development",
+    "Next.js",
+    "digital transformation"
   ],
-  "license": "MIT",
+  "license": "Private",
   "repository": {
     "type": "git",
     "url": "https://github.com/CypherVerseLabs/Tohhbala-Portfolio"
   },
-  "homepage": "https://github.com/CypherVerseLabs",
+  "homepage": "https://tohbalallc.com",
   "bugs": {
-    "url": "https://github.com/CypherVerseLabs/Tohhbala-Portfolio",
-    "email": "mactohbala@gmail.com"
+    "url": "https://github.com/CypherVerseLabs/Tohhbala-Portfolio/issues"
   },
-  
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -43,20 +38,20 @@
   "dependencies": {
     "@next/font": "^13.4.4",
     "framer-motion": "^10.12.16",
-    "next": "15.5.21",
+    "next": "^13.5.11",
     "react": "18.2.0",
     "react-countup": "^6.4.2",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "react-tsparticles": "^2.9.3",
-    "swiper": "^12.1.2",
+    "swiper": "^10.3.1",
     "tailwind-scrollbar": "^3.0.4",
     "tsparticles": "^2.9.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
     "eslint": "8.41.0",
-    "eslint-config-next": "13.4.3",
+    "eslint-config-next": "13.5.6",
     "postcss": "^8.5.18",
     "tailwindcss": "^3.3.2"
   }
