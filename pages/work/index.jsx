@@ -9,6 +9,7 @@ const Work = () => {
   return (
     <div className="h-full bg-primary/30 py-36 flex items-center">
       <Circles />
+
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row gap-x-8">
           {/* text */}
@@ -20,17 +21,27 @@ const Work = () => {
               exit="hidden"
               className="h2 xl:mt-12"
             >
-              My work <span className="text-accent">.</span>
+              Solutions{" "}
+              <span className="text-accent">Built</span>
+              <br />
+              For Real Businesses.
             </motion.h2>
+
             <motion.p
               variants={fadeIn("up", 0.4)}
               initial="hidden"
               animate="show"
               exit="hidden"
-              className="mb-4 max-w-[400px] mx-auto lg:mx-0"
+              className="mb-4 max-w-[450px] mx-auto lg:mx-0"
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-              tempora eligendi, quisquam tempore sint reiciendis.
+              Every project starts with understanding the business problem
+              first. From custom applications and SaaS platforms to automation
+              systems and digital experiences, we build technology designed to
+              improve the way businesses operate.
+              <br />
+              <br />
+              Explore examples of custom solutions, software platforms, and
+              digital products built to create real business value.
             </motion.p>
           </div>
 
@@ -46,6 +57,7 @@ const Work = () => {
           </motion.div>
         </div>
       </div>
+
       <Bulb />
     </div>
   );

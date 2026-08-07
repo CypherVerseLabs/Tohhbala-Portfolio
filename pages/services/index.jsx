@@ -11,6 +11,7 @@ const Services = () => {
   return (
     <div className="h-full bg-primary/30 py-36 flex items-center">
       <Circles />
+
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row gap-x-8">
           {/* text */}
@@ -22,17 +23,25 @@ const Services = () => {
               exit="hidden"
               className="h2 xl:mt-8"
             >
-              My services <span className="text-accent">.</span>
+              Custom <span className="text-accent">Business Solutions</span>
             </motion.h2>
+
             <motion.p
               variants={fadeIn("up", 0.4)}
               initial="hidden"
               animate="show"
               exit="hidden"
-              className="mb-4 max-w-[400px] mx-auto lg:mx-0"
+              className="mb-4 max-w-[500px] mx-auto lg:mx-0"
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-              tempora eligendi, quisquam tempore sint reiciendis.
+              Every business is unique, which is why every solution we build is
+              tailored to your goals. From custom websites and SaaS platforms to
+              CRM systems, workflow automation, AI integrations, and business
+              software, we create technology that streamlines operations,
+              improves customer experience, and helps your business grow.
+              <br />
+              <br />
+              We don't just deliver code—we deliver solutions that solve real
+              business problems.
             </motion.p>
           </div>
 
@@ -48,6 +57,7 @@ const Services = () => {
           </motion.div>
         </div>
       </div>
+
       <Bulb />
     </div>
   );

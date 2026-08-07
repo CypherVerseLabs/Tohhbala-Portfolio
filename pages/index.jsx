@@ -25,6 +25,7 @@ const Home = () => {
           </motion.h1>
 
           {/* subtitle */}
+          {/* subtitle */}
           <motion.p
             variants={fadeIn("down", 0.3)}
             initial="hidden"
@@ -32,10 +33,10 @@ const Home = () => {
             exit="hidden"
             className="max-w-sm xl:max-w-xl mx-auto xl:mx-0 mb-10 xl:mb-16"
           >
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate,
-            exercitationem harum, quia nulla temporibus deleniti libero veniam
-            vero beatae numquam ducimus illum ab similique ipsam tempore fugit
-            quod laudantium debitis.
+            We don't just build websites—we build custom business solutions. Combining
+            20+ years of industry experience with modern web technologies, we develop
+            SaaS platforms, CRM systems, client portals, and automation tools that save
+            time, increase productivity, and help businesses scale with confidence.
           </motion.p>
 
           {/* btn */}
