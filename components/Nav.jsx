@@ -14,10 +14,26 @@ import {
 
 // nav data
 export const navData = [
-  { name: "home", path: "/", Icon: HiHome },
-  { name: "about", path: "/about", Icon: HiUser },
-  { name: "services", path: "/services", Icon: HiRectangleGroup },
-  { name: "work", path: "/work", Icon: HiViewColumns },
+  {
+    name: "home",
+    path: "/",
+    Icon: HiHome,
+  },
+  {
+    name: "about",
+    path: "/about",
+    Icon: HiUser,
+  },
+  {
+    name: "services",
+    path: "/services",
+    Icon: HiRectangleGroup,
+  },
+  {
+    name: "work",
+    path: "/work",
+    Icon: HiViewColumns,
+  },
   {
     name: "testimonials",
     path: "/testimonials",
@@ -35,38 +51,103 @@ const Nav = () => {
   const pathname = router.pathname;
 
   return (
-    <nav>
-      <div className="flex items-center gap-x-6">
-        {navData.map((link, i) => (
-          <Link
-            href={link.path}
-            key={i}
-            className={`${
-              link.path === pathname ? "text-accent" : ""
-            } relative flex items-center group hover:text-accent transition-all duration-300`}
-          >
-            {/* tooltip */}
-            <div className="absolute bottom-full mb-2 hidden group-hover:flex left-1/2 -translate-x-1/2">
-              <div className="relative flex items-center rounded-md bg-white px-3 py-1 text-sm text-primary capitalize">
+    <nav
+      className="
+        fixed
+        bottom-8
+        left-1/2
+        z-50
+        -translate-x-1/2
+        xl:bottom-8
+      "
+    >
+      <div
+        className="
+          flex
+          items-center
+          gap-x-4
+          rounded-full
+          border
+          border-white/10
+          bg-black/20
+          px-6
+          py-3
+          backdrop-blur-md
+        "
+      >
+        {navData.map((link, i) => {
+          const Icon = link.Icon;
+
+          return (
+            <Link
+              href={link.path}
+              key={i}
+              className={`
+                group
+                relative
+                flex
+                h-10
+                w-10
+                items-center
+                justify-center
+                rounded-full
+                transition-all
+                duration-300
+                ${
+                  link.path === pathname
+                    ? "text-accent"
+                    : "text-white/70"
+                }
+                hover:text-accent
+              `}
+            >
+              {/* tooltip */}
+              <span
+                className="
+                  absolute
+                  -top-10
+                  scale-0
+                  rounded-md
+                  bg-white
+                  px-3
+                  py-1
+                  text-xs
+                  text-black
+                  transition-all
+                  group-hover:scale-100
+                "
+              >
                 {link.name}
+              </span>
 
-                {/* triangle */}
-                <div
-                  className="absolute -bottom-2 left-1/2 -translate-x-1/2 border-solid border-l-transparent border-r-transparent border-t-white border-l-[6px] border-r-[6px] border-t-[8px]"
-                  aria-hidden
+
+              {/* triangle */}
+              {link.path === pathname && (
+                <span
+                  className="
+                    absolute
+                    -bottom-2
+                    left-1/2
+                    -translate-x-1/2
+                    border-l-[6px]
+                    border-r-[6px]
+                    border-t-[8px]
+                    border-l-transparent
+                    border-r-transparent
+                    border-t-accent
+                  "
                 />
-              </div>
-            </div>
+              )}
 
-            {/* icon */}
-            <link.Icon aria-hidden />
-          </Link>
-        ))}
+
+              {/* icon */}
+              <Icon className="text-xl" aria-hidden />
+            </Link>
+          );
+        })}
       </div>
     </nav>
   );
 };
 
 export default Nav;
-
-

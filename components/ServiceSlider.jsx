@@ -1,116 +1,161 @@
+"use client";
 
-import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+import { BsArrowRight } from "react-icons/bs";
 
-import {
-  RxCrop,
-  RxPencil2,
-  RxDesktop,
-  RxReader,
-  RxRocket,
-  RxArrowTopRight,
-} from "react-icons/rx";
-
-import { FreeMode, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
 import "swiper/css";
-import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
-const Swiper = dynamic(
-  () => import("swiper/react").then((mod) => mod.Swiper),
-  {
-    ssr: false,
-  }
-);
+const workSlides = {
+  slides: [
+    {
+      images: [
+        {
+          title: "Custom Business Application",
+          path: "/thumb1.jpg",
+          link: "/contact",
+        },
+        {
+          title: "CRM & Customer Management System",
+          path: "/thumb2.jpg",
+          link: "/contact",
+        },
+        {
+          title: "Business Workflow Automation",
+          path: "/thumb3.jpg",
+          link: "/contact",
+        },
+        {
+          title: "Custom Client Portal",
+          path: "/thumb4.jpg",
+          link: "/contact",
+        },
+      ],
+    },
+    {
+      images: [
+        {
+          title: "Construction Management Solution",
+          path: "/thumb4.jpg",
+          link: "/contact",
+        },
+        {
+          title: "Automotive Industry Solution",
+          path: "/thumb1.jpg",
+          link: "/contact",
+        },
+        {
+          title: "Security & Monitoring Platform",
+          path: "/thumb2.jpg",
+          link: "/contact",
+        },
+        {
+          title: "Custom Digital Experience",
+          path: "/thumb3.jpg",
+          link: "/contact",
+        },
+      ],
+    },
+  ],
+};
 
-const SwiperSlide = dynamic(
-  () => import("swiper/react").then((mod) => mod.SwiperSlide),
-  {
-    ssr: false,
-  }
-);
-
-const serviceData = [
-  {
-    Icon: RxDesktop,
-    title: "Custom Software",
-    description:
-      "Business applications built around your workflow, from internal tools to complete software platforms.",
-  },
-  {
-    Icon: RxRocket,
-    title: "SaaS Development",
-    description:
-      "Scalable SaaS products designed to help businesses automate processes and create new opportunities.",
-  },
-  {
-    Icon: RxReader,
-    title: "CRM Systems",
-    description:
-      "Custom customer management solutions that organize sales, communication, and business operations.",
-  },
-  {
-    Icon: RxCrop,
-    title: "Automation Solutions",
-    description:
-      "Eliminate repetitive tasks with smart workflows, integrations, and technology that saves time.",
-  },
-  {
-    Icon: RxPencil2,
-    title: "Modern Web Applications",
-    description:
-      "High-performance React applications designed for speed, reliability, and a better user experience.",
-  },
-];
-
-const ServiceSlider = () => {
+const WorkSlider = () => {
   return (
     <Swiper
-      breakpoints={{
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 15,
-        },
-        640: {
-          slidesPerView: 3,
-          spaceBetween: 15,
-        },
-      }}
+      modules={[Pagination]}
       pagination={{
         clickable: true,
       }}
-      modules={[FreeMode, Pagination]}
-      freeMode={true}
-      className="h-[240px] sm:h-[340px]"
+      spaceBetween={20}
+      slidesPerView={1}
+      className="h-[280px] sm:h-[480px] w-full"
     >
-      {serviceData.map((item, i) => (
-        <SwiperSlide key={i}>
-          <div className="group cursor-pointer rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:bg-white/10 h-full">
-            
-            {/* icon */}
-            <div className="mb-6 text-4xl text-accent">
-              <item.Icon aria-hidden />
-            </div>
+      {workSlides.slides.map((slide, index) => (
+        <SwiperSlide key={index}>
+          <div className="grid grid-cols-2 gap-4 h-full">
+            {slide.images.map((image, imageIndex) => (
+              <div
+                key={imageIndex}
+                className="
+                  group
+                  relative
+                  overflow-hidden
+                  rounded-xl
+                  h-[130px]
+                  sm:h-[220px]
+                  bg-white/10
+                "
+              >
+                <Image
+                  src={image.path}
+                  alt={image.title}
+                  fill
+                  className="
+                    object-cover
+                    transition-all
+                    duration-500
+                    group-hover:scale-110
+                  "
+                />
 
-            {/* title & description */}
-            <div className="mb-8">
-              <div className="mb-2 text-lg font-semibold">
-                {item.title}
+                {/* overlay */}
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    bg-gradient-to-l
+                    from-transparent
+                    via-[#e838cc]
+                    to-[#4a22bd]
+                    opacity-0
+                    transition-all
+                    duration-500
+                    group-hover:opacity-80
+                  "
+                />
+
+                {/* title */}
+                <div
+                  className="
+                    absolute
+                    bottom-0
+                    left-0
+                    w-full
+                    p-4
+                    translate-y-full
+                    transition-all
+                    duration-300
+                    group-hover:translate-y-0
+                  "
+                >
+                  <Link
+                    href={image.link}
+                    className="
+                      flex
+                      items-center
+                      gap-2
+                      text-sm
+                      tracking-wider
+                    "
+                  >
+                    <span>{image.title}</span>
+
+                    <BsArrowRight
+                      className="
+                        text-xl
+                        transition-transform
+                        duration-300
+                        group-hover:translate-x-2
+                      "
+                    />
+                  </Link>
+                </div>
               </div>
-
-              <p className="max-w-[350px] leading-normal text-white/70">
-                {item.description}
-              </p>
-            </div>
-
-            {/* arrow */}
-            <div className="text-3xl">
-              <RxArrowTopRight
-                className="transition-all duration-300 group-hover:rotate-45 group-hover:text-accent"
-                aria-hidden
-              />
-            </div>
-
+            ))}
           </div>
         </SwiperSlide>
       ))}
@@ -118,5 +163,4 @@ const ServiceSlider = () => {
   );
 };
 
-export default ServiceSlider;
-
+export default WorkSlider;

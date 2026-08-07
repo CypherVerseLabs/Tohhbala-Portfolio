@@ -1,27 +1,14 @@
+"use client";
 
 import Image from "next/image";
-import dynamic from "next/dynamic";
-
 import { FaQuoteLeft } from "react-icons/fa";
+
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-const Swiper = dynamic(
-  () => import("swiper/react").then((mod) => mod.Swiper),
-  {
-    ssr: false,
-  }
-);
-
-const SwiperSlide = dynamic(
-  () => import("swiper/react").then((mod) => mod.SwiperSlide),
-  {
-    ssr: false,
-  }
-);
 
 const testimonialData = [
   {
@@ -50,55 +37,91 @@ const testimonialData = [
 const TestimonialSlider = () => {
   return (
     <Swiper
+      modules={[Navigation, Pagination]}
       navigation
       pagination={{
         clickable: true,
       }}
-      modules={[Navigation, Pagination]}
-      className="h-[400px]"
+      spaceBetween={30}
+      slidesPerView={1}
+      className="h-[420px] w-full"
     >
-      {testimonialData.map((person, i) => (
-        <SwiperSlide key={i}>
-          <div className="flex flex-col items-center gap-8 xl:flex-row xl:gap-16">
-
-            {/* avatar, name, position */}
-            <div className="flex flex-col items-center text-center xl:w-[250px]">
+      {testimonialData.map((person, index) => (
+        <SwiperSlide key={index}>
+          <div
+            className="
+              flex
+              h-full
+              flex-col
+              items-center
+              justify-center
+              gap-8
+              px-4
+              md:flex-row
+            "
+          >
+            {/* avatar */}
+            <div className="flex flex-col items-center text-center md:w-[250px]">
               <div className="relative mb-4 h-[100px] w-[100px]">
                 <Image
                   src={person.image}
                   fill
-                  className="rounded-full object-cover"
                   alt={person.name}
+                  className="rounded-full object-cover"
                 />
               </div>
 
-              <div className="text-lg">
+              <h3 className="text-lg">
                 {person.name}
-              </div>
+              </h3>
 
-              <div className="text-[12px] uppercase font-extralight tracking-widest text-white/60">
+              <p
+                className="
+                  text-[12px]
+                  uppercase
+                  tracking-widest
+                  text-white/60
+                "
+              >
                 {person.position}
-              </div>
+              </p>
             </div>
 
-            {/* quote and message */}
-            <div className="relative flex flex-1 flex-col justify-center xl:border-l xl:border-white/20 xl:pl-20">
 
-              {/* quote icon */}
-              <div className="mb-4">
-                <FaQuoteLeft
-                  className="mx-auto text-4xl text-white/20 md:mx-0 xl:text-6xl"
-                  aria-hidden
-                />
-              </div>
+            {/* message */}
+            <div
+              className="
+                relative
+                flex
+                flex-1
+                flex-col
+                justify-center
+                md:border-l
+                md:border-white/20
+                md:pl-12
+              "
+            >
+              <FaQuoteLeft
+                className="
+                  mb-5
+                  text-5xl
+                  text-white/20
+                "
+                aria-hidden
+              />
 
-              {/* message */}
-              <div className="text-center text-white/80 md:text-left xl:text-lg">
+              <p
+                className="
+                  text-center
+                  text-white/80
+                  md:text-left
+                  md:text-lg
+                  leading-relaxed
+                "
+              >
                 {person.message}
-              </div>
-
+              </p>
             </div>
-
           </div>
         </SwiperSlide>
       ))}
@@ -107,4 +130,3 @@ const TestimonialSlider = () => {
 };
 
 export default TestimonialSlider;
-

@@ -5,11 +5,11 @@ import Socials from "../components/Socials";
 
 const Header = () => {
   return (
-    <header className="absolute z-30 w-full flex items-center px-6 xl:px-0">
+    <header className="absolute z-30 w-full">
       <div className="container mx-auto">
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between py-8">
 
-          {/* logo */}
+          {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
               src="/logo.png"
@@ -20,7 +20,8 @@ const Header = () => {
             />
           </Link>
 
-          {/* navigation */}
+
+          {/* Navigation */}
           <nav className="hidden xl:flex items-center gap-x-8">
             <Link
               href="/"
@@ -59,13 +60,25 @@ const Header = () => {
 
             <a
               href="https://portal.tohbalallc.com"
-              className="border border-white/40 rounded-full px-5 py-2 hover:border-accent hover:text-accent transition-all"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                rounded-full
+                border
+                border-white/40
+                px-5
+                py-2
+                transition-all
+                hover:border-accent
+                hover:text-accent
+              "
             >
               Client Portal
             </a>
           </nav>
 
-          {/* socials */}
+
+          {/* Social Icons */}
           <Socials />
 
         </div>
